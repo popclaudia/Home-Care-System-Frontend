@@ -140,7 +140,7 @@ class PatientForm extends React.Component {
             medical_record: this.state.formControls.medical_record.value,
             caregiver:  this.state.caregiv   //this.state.formControls.caregiver.value
         };
-        alert(patient.caregiver)
+       
         console.log(patient);
         this.props.action==='update' ? this.updatePatient(patient, this.props.id) : this.registerPatient(patient)
 
