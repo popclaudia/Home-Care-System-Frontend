@@ -3,11 +3,10 @@ import validate from "./validators/validators";
 import Button from "react-bootstrap/Button";
 import * as API_USERS from "../api/patients_api";
 import APIResponseErrorMessage from "../../commons/errorhandling/api-response-error-message";
-import {Col, Row} from "reactstrap";
+import {Col,Row} from "reactstrap";
 import { FormGroup, Input, Label} from 'reactstrap';
-import { FormControl} from 'react-bootstrap';
-
-
+import * as API_CAREGIVER from "../api/caregivers-api";
+import Select from 'react-select'
 
 class PatientForm extends React.Component {
 
@@ -16,13 +15,15 @@ class PatientForm extends React.Component {
         this.toggleForm = this.toggleForm.bind(this);
         this.reloadHandler = this.props.reloadHandler;
 
+        this.handleChanges = this.handleChanges.bind(this);
         this.state = {
 
             errorStatus: 0,
             error: null,
-
+            tableData: null,
+            options: [{value: 0, label: "Select caregiver..."}],
             formIsValid: this.props.action === 'update',
-
+            caregiv: 0,
             formControls: {
                 name: {
                     value: this.props.action==='update'? this.props.name : null,
@@ -137,13 +138,50 @@ class PatientForm extends React.Component {
             gender: this.state.formControls.gender.value,
             address: this.state.formControls.address.value,
             medical_record: this.state.formControls.medical_record.value,
-            caregiver: this.state.formControls.caregiver.value
+            caregiver:  this.state.caregiv   //this.state.formControls.caregiver.value
         };
-
+        alert(patient.caregiver)
         console.log(patient);
         this.props.action==='update' ? this.updatePatient(patient, this.props.id) : this.registerPatient(patient)
 
     }
+
+    componentDidMount() {
+        this.fetchCaregivers();
+    }
+
+    fetchCaregivers() {
+        return API_CAREGIVER.getCaregiver((result, status, err) => {
+
+            if (result !== null && status === 200) {
+                this.setState({
+                    tableData: result,
+                    isLoaded: true
+                });
+                this.caregiversList()
+            } else {
+                this.setState(({
+                    errorStatus: status,
+                    error: err
+                }));
+            }
+        });
+    }
+
+caregiversList (){
+
+        for(const a of this.state.tableData){
+            let option= { value: a.id, label: a.name}
+            this.state.options.push(option)
+        }
+
+}
+
+
+    handleChanges(e) {
+        this.setState({ caregiv: e.target.value });
+    }
+
 
     render() {
         return (
@@ -182,20 +220,7 @@ class PatientForm extends React.Component {
                            valid={this.state.formControls.gender.valid}
                            required
                     />
-                    <FormControl
-                        as="select"
-                        className="mr-sm-2"
-                        id="inlineFormCustomSelect"
-                        custom
-                        value={'none'}
-                    >
-                        <option value="0">Choose...</option>
-                        <option value="Female">Female</option>
-                        <option value="Male">Male</option>
-                    </FormControl>
                 </FormGroup>
-
-
 
                 <FormGroup id='address'>
                     <Label for='addressField'> Address: </Label>
@@ -221,25 +246,26 @@ class PatientForm extends React.Component {
                 </FormGroup>
                 <FormGroup id='caregiver'>
                     <Label for='caregiverField'> Caregiver: </Label>
-                    <Input name='caregiver' id='caregiverField' placeholder={this.state.formControls.caregiver.placeholder}
-
-                           onChange={this.handleChange}
-                           defaultValue={this.state.formControls.caregiver.value}
-                           touched={this.state.formControls.caregiver.touched? 1 : 0}
-                           valid={this.state.formControls.caregiver.valid}
-                           required
-                    />
+                    {this.state.tableData!=null &&  <select style={{width:'100%'}}
+                        value={this.state.caregiv} onChange={this.handleChanges}>
+                        {this.state.options.map((option) => (
+                            <option value={option.value}>{option.label}</option>
+                        ))}
+                    </select>
+                    }
                 </FormGroup>
 
                 <Row>
                     <Col sm={{size: '4', offset: 8}}>
-                        <Button type={"submit"} disabled={!this.state.formIsValid} onClick={this.handleSubmit}>  Submit </Button>
-                    </Col>
+                         <Button type={"submit"} disabled={!this.state.formIsValid}
+                                                            onClick={this.handleSubmit}> Submit </Button>
+                        </Col>
                 </Row>
 
                 {
                     this.state.errorStatus > 0 &&
                     <APIResponseErrorMessage errorStatus={this.state.errorStatus} error={this.state.error}/>
+
                 }
             </div>
         ) ;

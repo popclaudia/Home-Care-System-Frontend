@@ -2,15 +2,11 @@ import React from 'react'
 import logo from './commons/images/icon.png';
 
 import {
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
+
     Nav,
     Navbar,
     Button,
     NavbarBrand,
-    NavLink,
-    UncontrolledDropdown
 } from 'reactstrap';
 import {func} from "prop-types";
 

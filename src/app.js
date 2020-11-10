@@ -2,7 +2,6 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import NavigationBar from './navigation-bar'
 import Home from './home/home';
-import PersonContainer from './person/person-container'
 import Login from './login/login';
 import DoctorContainer from './doctor/doctor_container';
 import PatientContainer from './patient/patient_container';
@@ -31,12 +30,6 @@ class App extends React.Component {
                             exact
                             path='/'
                             render={() => <Home/>}
-                        />
-
-                        <Route
-                            exact
-                            path='/person'
-                            render={() =>  <PersonContainer/>}
                         />
 
                         <Route

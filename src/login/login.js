@@ -1,13 +1,9 @@
 import React from "react";
 import {Button, Card, Container, FormGroup, Label, CardHeader, Col, Input, Modal, ModalBody, ModalHeader, Row} from "reactstrap";
-import PersonTable from "../person/components/person-table";
-import APIResponseErrorMessage from "../commons/errorhandling/api-response-error-message";
-import PersonForm from "../person/components/person-form";
 import './login.css'
 import '../general.css'
 import * as API_USERS from "./api/login-api";
 import { Redirect} from 'react-router-dom';
-
 class Login extends React.Component{
 
     constructor(props) {

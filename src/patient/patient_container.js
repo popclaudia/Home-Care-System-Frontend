@@ -2,20 +2,13 @@ import React from 'react';
 import patient from '../commons/images/Patient.ico';
 import APIResponseErrorMessage from "../commons/errorhandling/api-response-error-message";
 import {
-    Button,
-    Card,
     CardHeader,
     Col,
-    Modal,
-    Input,
-    ModalBody,
-    ModalHeader,
     Row, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavLink
 } from 'reactstrap';
 import caregiver from "../commons/images/caregiver.ico";
 import * as API_USERS from "../doctor/api/patients_api";
 import * as API_PLAN from "./api/medication-plan-api";
-import PatientsTable from "../doctor/components/patients_table";
 import PlanTable from "./components/plan-table";
 
 

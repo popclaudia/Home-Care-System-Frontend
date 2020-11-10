@@ -23,7 +23,9 @@ class PatientsTable extends React.Component {
             type: "patient",
             open: false,
             errorStatus: 0,
-            error: null
+            error: null,
+            selectedRow: false,
+            id: null
         };
         this.toggleForm = this.toggleForm.bind(this);
     }
@@ -67,6 +69,7 @@ class PatientsTable extends React.Component {
                 this.setState({
                     tableData2: result,
                 });
+                this.toggleForm()
             } else {
                 this.setState(({
                     errorStatus: status,
@@ -78,11 +81,19 @@ class PatientsTable extends React.Component {
 
     handlePlan (id){
         this.fetchMedicationPlans(id);
-        this.toggleForm()
+
     }
 
     toggleForm() {
         this.setState({open: !this.state.open});
+    }
+
+    handleSelectRow(id) {
+        this.setState({
+            selectedRow:true,
+            id: id.id,
+        })
+
     }
 
     render() {
@@ -101,7 +112,8 @@ class PatientsTable extends React.Component {
                        className={this.props.className} size={'xl'}>
                     <ModalHeader toggle={this.toggleForm}> Medication plans: </ModalHeader>
                     <ModalBody>
-                        {this.state.tableData2!=null && <PlanTable tableData = {this.state.tableData2}
+                        {this.state.tableData2!=null && this.state.open && <PlanTable tableData = {this.state.tableData2}
+                                                                   handleSelectRow={this.handleSelectRow.bind(this)}
                         />}
                     </ModalBody>
                 </Modal>
