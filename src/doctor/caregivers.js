@@ -164,7 +164,7 @@ class CaregiversCRUD extends React.Component {
                 </Card>
                 <Modal isOpen={this.state.selected} toggle={this.toggleForm}
                        className={this.props.className} size="lg">
-                    <ModalHeader toggle={this.toggleForm}> Add Caregiver: </ModalHeader>
+                    <ModalHeader toggle={this.toggleForm}> Manage Caregiver: </ModalHeader>
                     <ModalBody>
                         <CaregiverForm reloadHandler={this.reload}
                                        name={this.state.caregiver.name}

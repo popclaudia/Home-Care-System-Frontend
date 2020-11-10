@@ -21,8 +21,8 @@ function deletePatient(id, callback) {
     RestApiClient.performRequest(request, callback);
 }
 
-function getPatientById(params, callback){
-    let request = new Request(HOST.backend_api + endpoint.patient + params.id, {
+function getPatientById(id, callback){
+    let request = new Request(HOST.backend_api + endpoint.patient + '/' + id, {
         method: 'GET'
     });
 

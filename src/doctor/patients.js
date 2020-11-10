@@ -5,7 +5,7 @@ import APIResponseErrorMessage from "../commons/errorhandling/api-response-error
 import PatientForm from "./components/patient-form";
 import PatientsTable from "./components/patients_table";
 import * as API_USERS from "./api/patients_api";
-import MedicationForm from "./components/medication-form";
+import PlanForm from "./components/plan-form";
 
 
 class PatientsCRUD extends React.Component {
@@ -13,12 +13,15 @@ class PatientsCRUD extends React.Component {
     constructor(props) {
         super(props);
         this.toggleForm = this.toggleForm.bind(this);
+        this.togglePlanForm = this.togglePlanForm.bind(this);
         this.reload = this.reload.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.handleAdd= this.handleAdd.bind(this);
+        this.handleCreation = this.handleCreation.bind(this);
         this.state = {
             selected: false,
+            selectedp: false,
             collapseForm: false,
             tableData: [],
             isLoaded: false,
@@ -88,6 +91,10 @@ class PatientsCRUD extends React.Component {
         this.toggleForm()
     }
 
+    handleCreation(){
+        this.togglePlanForm()
+    }
+
     handleAdd(){
         this.setState({
             action: 'add'
@@ -117,6 +124,9 @@ class PatientsCRUD extends React.Component {
         this.setState({selected: !this.state.selected});
     }
 
+    togglePlanForm() {
+        this.setState({selectedp: !this.state.selectedp});
+    }
 
     reload() {
         this.setState({
@@ -140,7 +150,7 @@ class PatientsCRUD extends React.Component {
                     <br/>
                     <br/>
                     <Row>
-                        <Col sm={{size: '7', offset: 1}}>
+                        <Col sm={{size: '9', offset: 1}}>
                             {this.state.isLoaded && <PatientsTable tableData = {this.state.tableData}
                                                                    handleSelectRow={this.handleSelectRow.bind(this)}
                             />}
@@ -151,9 +161,10 @@ class PatientsCRUD extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col sm="8" md={{ size: 6, offset: 3 }}>
+                        <Col sm="9" md={{ size: 8, offset: 3 }}>
                             <Button disabled={!this.state.selectedRow} color="warning" size={"lg"} onClick={this.handleDelete}>Delete Patient</Button>
                             <Button disabled={!this.state.selectedRow} color="info" size={"lg"} onClick={this.handleUpdate}>Update Patient</Button>
+                            <Button disabled={!this.state.selectedRow} color="primary" size={"lg"} onClick={this.handleCreation}>Create medication plan</Button>
                         </Col>
                     </Row>
                     <br/>
@@ -164,7 +175,7 @@ class PatientsCRUD extends React.Component {
 
                 <Modal isOpen={this.state.selected} toggle={this.toggleForm}
                        className={this.props.className} size="lg">
-                    <ModalHeader toggle={this.toggleForm}> Add Patient: </ModalHeader>
+                    <ModalHeader toggle={this.toggleForm}> Manage Patient: </ModalHeader>
                     <ModalBody>
                         <PatientForm reloadHandler={this.reload}
                                      name={this.state.patient.name}
@@ -175,7 +186,15 @@ class PatientsCRUD extends React.Component {
                                      caregiver={this.state.patient.caregiver}
                                      id={ this.state.id}
                                      action={this.state.action}
-
+                        />
+                    </ModalBody>
+                </Modal>
+                <Modal isOpen={this.state.selectedp} toggle={this.togglePlanForm}
+                       className={this.props.className} size={'xl'}>
+                    <ModalHeader toggle={this.togglePlanForm}> Create medication plan for {this.state.patient.name}: </ModalHeader>
+                    <ModalBody>
+                        <PlanForm reloadHandler={this.togglePlanForm}
+                                     id={ this.state.id}
                         />
                     </ModalBody>
                 </Modal>

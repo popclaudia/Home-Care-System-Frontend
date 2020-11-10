@@ -8,6 +8,7 @@ class DoctorContainer extends React.Component {
         return (
             <div>
                 <HeaderDoctor/>
+                <h1 style={{backgroundColor:"white"}}> Hello Doctor!</h1>
             </div>
 
         )

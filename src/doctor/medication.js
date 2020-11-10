@@ -162,7 +162,7 @@ class MedicationCRUD extends React.Component {
 
                 <Modal isOpen={this.state.selected} toggle={this.toggleForm}
                        className={this.props.className} size="lg">
-                    <ModalHeader toggle={this.toggleForm}> Add Medication: </ModalHeader>
+                    <ModalHeader toggle={this.toggleForm}> Manage Medication: </ModalHeader>
                     <ModalBody>
                         <MedicationForm reloadHandler={this.reload}
                                         name={this.state.medication.name}
@@ -170,8 +170,6 @@ class MedicationCRUD extends React.Component {
                                         dosage={this.state.medication.dosage}
                                         id={ this.state.id}
                                         action={this.state.action}
-
-
                         />
                     </ModalBody>
                 </Modal>

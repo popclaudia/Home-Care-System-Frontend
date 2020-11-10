@@ -5,6 +5,7 @@ import * as API_USERS from "../api/patients_api";
 import APIResponseErrorMessage from "../../commons/errorhandling/api-response-error-message";
 import {Col, Row} from "reactstrap";
 import { FormGroup, Input, Label} from 'reactstrap';
+import { FormControl} from 'react-bootstrap';
 
 
 
@@ -60,7 +61,7 @@ class PatientForm extends React.Component {
                 caregiver: {
                     value: this.props.action==='update'? this.props.caregiver : null,
                     placeholder: 'Caregiver',
-                    valid: this.props.action === 'update',
+                    valid: true,
                     touched: false,
                 },
             }
@@ -160,6 +161,7 @@ class PatientForm extends React.Component {
                     <div className={"error-message row"}> * Name must have at least 3 characters </div>}
                 </FormGroup>
 
+
                 <FormGroup id='birthdate'>
                     <Label for='birthdateField'> Birthdate: </Label>
                     <Input type="date" name='birthdate' id='birthdateField' placeholder={this.state.formControls.birthdate.placeholder}
@@ -180,7 +182,20 @@ class PatientForm extends React.Component {
                            valid={this.state.formControls.gender.valid}
                            required
                     />
+                    <FormControl
+                        as="select"
+                        className="mr-sm-2"
+                        id="inlineFormCustomSelect"
+                        custom
+                        value={'none'}
+                    >
+                        <option value="0">Choose...</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                    </FormControl>
                 </FormGroup>
+
+
 
                 <FormGroup id='address'>
                     <Label for='addressField'> Address: </Label>

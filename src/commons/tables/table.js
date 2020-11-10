@@ -3,7 +3,6 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import Field from "./fields/Field";
 import {Col, Row} from "react-bootstrap";
-import {Button} from "reactstrap";
 
 class Table extends Component {
     constructor(props) {

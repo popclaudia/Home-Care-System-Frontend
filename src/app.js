@@ -13,6 +13,7 @@ import styles from './commons/styles/project-style.css';
 import PatientsCRUD from "./doctor/patients";
 import CaregiversCRUD from "./doctor/caregivers";
 import MedicationCRUD from "./doctor/medication";
+import Unauthorized from "./commons/errorhandling/unauthorized-page";
 
 class App extends React.Component {
 
@@ -35,49 +36,73 @@ class App extends React.Component {
                         <Route
                             exact
                             path='/person'
-                            render={() => <PersonContainer/>}
+                            render={() =>  <PersonContainer/>}
                         />
 
                         <Route
                             exact
                             path='/doctor'
-                            render={() => <DoctorContainer/>}
+                            render={() => sessionStorage.getItem("role")==="Doctor"?
+                                <DoctorContainer/>
+                                :
+                                <Unauthorized/>}
                         />
 
                         <Route
                             exact
                             path='/doctor/patients'
-                            render={() => <PatientsCRUD/>}
+                            render={() => sessionStorage.getItem("role")==="Doctor"?
+                                <PatientsCRUD/>
+                                :
+                                <Unauthorized/>}
                         />
 
                         <Route
                             exact
                             path='/doctor/caregivers'
-                            render={() => <CaregiversCRUD/>}
+                            render={() => sessionStorage.getItem("role")==="Doctor"?
+                                <CaregiversCRUD/>
+                                :
+                                <Unauthorized/> }
                         />
 
                         <Route
                             exact
                             path='/doctor/medication'
-                            render={() => <MedicationCRUD/>}
+                            render={() => sessionStorage.getItem("role")==="Doctor"?
+                                <MedicationCRUD/>
+                                :
+                                <Unauthorized/>}
                         />
 
                         <Route
                             exact
                             path='/patient'
-                            render={() => <PatientContainer/>}
+                            render={() => sessionStorage.getItem("role")==="Patient"?
+                                <PatientContainer/>
+                                :
+                                <Unauthorized/>}
                         />
 
                         <Route
                             exact
                             path='/caregiver'
-                            render={() => <CaregiverContainer/>}
+                            render={() => sessionStorage.getItem("role")==="CareGiver"?
+                                <CaregiverContainer/>
+                                :
+                                <Unauthorized/>}
                         />
 
                         <Route
                             exact
                             path='/login'
                             render={() => <Login/>}
+                        />
+
+                        <Route
+                            exact
+                            path='/unauthorized'
+                            render={() => <Unauthorized/>}
                         />
 
                         {/*Error*/}
