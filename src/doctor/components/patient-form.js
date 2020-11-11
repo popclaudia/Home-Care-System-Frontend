@@ -23,7 +23,7 @@ class PatientForm extends React.Component {
             tableData: null,
             options: [{value: null, label: "Select caregiver..."}],
             formIsValid: this.props.action === 'update',
-            caregiv: 0,
+            caregiv: null,
             formControls: {
                 name: {
                     value: this.props.action==='update'? this.props.name : null,
