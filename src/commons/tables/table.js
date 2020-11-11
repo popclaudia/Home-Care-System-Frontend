@@ -107,7 +107,7 @@ class Table extends Component {
                             }
                             showPagination={true}
                             style={{
-                                height: '450px'
+                                height: '350px'
                             }}
 
 
