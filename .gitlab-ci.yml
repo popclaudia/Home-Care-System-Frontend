@@ -23,7 +23,7 @@ build:
 
 
 variables:
-    APP_NAME: react-assignment-1
+    APP_NAME: react-assignment-unu
     
 deploy:
   image: docker:latest
