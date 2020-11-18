@@ -68,7 +68,6 @@ class PatientsCRUD extends React.Component {
                 this.setState({
                     tableData: result,
                     isLoaded: false
-
                 });
                 this.fetchPatients();
             } else {
