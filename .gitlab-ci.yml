@@ -8,7 +8,7 @@ cache:
     
 variables:
   CI: ""
-
+ 
 build:
   image: docker:latest
   services:
