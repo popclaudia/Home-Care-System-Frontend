@@ -87,7 +87,7 @@ class CaregiverContainer extends React.Component {
                     </Row>
                 </CardHeader>
 
-                <SockJsClient url='http://localhost:8080/notify/'
+                <SockJsClient url='https://spring-assignment-1.herokuapp.com/notify/'
                               topics={['/queue/notification/'+sessionStorage.getItem("id")]}
                               onConnect={() => {
                                   console.log("connected");
