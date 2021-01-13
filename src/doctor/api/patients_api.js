@@ -2,7 +2,7 @@ import {HOST} from '../../commons/hosts';
 import RestApiClient from "../../commons/api/rest-client";
 import axios from 'axios'
 const endpoint = {
-    patient: '/patient'
+    patient: '/api/patient'
 };
 
 
