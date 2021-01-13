@@ -3,7 +3,7 @@ import RestApiClient from "../../commons/api/rest-client";
 
 
 const endpoint = {
-    medicationPlan: '/medicationplan'
+    medicationPlan: '/api/medicationplan'
 };
 
 function getMedicationPlans(idPatient, callback){
