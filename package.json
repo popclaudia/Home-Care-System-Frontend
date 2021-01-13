@@ -22,7 +22,6 @@
     "recharts": "latest",
     "superagent-auth-bearer": "^0.0.1"
   },
-  "proxy": "https://spring-assignment-1.herokuapp.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
