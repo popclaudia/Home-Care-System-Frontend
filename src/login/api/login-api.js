@@ -2,7 +2,7 @@ import {HOST} from "../../commons/hosts";
 import RestApiClient from "../../commons/api/rest-client";
 
 const endpoint = {
-    patient: '/user'
+    patient: '/api/user'
 };
 
 function getUserByUsername(user, pass, callback){
