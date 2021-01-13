@@ -7,11 +7,12 @@ const endpoint = {
 };
 
 function postMedicationPlan(medicationPlan, callback){
-    let request = new Request(HOST.backend_api + endpoint.medicationPlan, {
+    let request = new Request(endpoint.medicationPlan, {
         method: 'POST',
         headers : {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token")
         },
         body: JSON.stringify(medicationPlan)
     });

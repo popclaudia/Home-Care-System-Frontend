@@ -6,13 +6,25 @@ const endpoint = {
 };
 
 function getUserByUsername(user, pass, callback){
-    let request = new Request(HOST.backend_api + endpoint.patient + "/get/" + user + "/" + pass, {
-        method: 'GET',
 
+    let u ={
+        username: user,
+        password: pass
+    }
+    //HOST.backend_api +
+    let request = new Request( endpoint.patient + "/login", {
+        method: 'POST',
+        headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(u)
     });
 
-    console.log(request.url);
+    console.log("URL: " + request.url);
+
     RestApiClient.performRequest(request, callback);
+
 }
 
 export{

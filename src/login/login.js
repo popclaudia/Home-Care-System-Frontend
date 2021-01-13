@@ -52,6 +52,7 @@ class Login extends React.Component{
             sessionStorage.setItem('user', this.state.user);
             sessionStorage.setItem('id', this.state.user.user);
             sessionStorage.setItem('role', this.state.user.role);
+            sessionStorage.setItem('token', this.state.user.token);
             this.setState({
                 data:true,
             })

@@ -7,9 +7,12 @@ const endpoint = {
 };
 
 function getMedicationPlans(idPatient, callback){
-    let request = new Request(HOST.backend_api + endpoint.medicationPlan + '/patient/' + idPatient, {
+    let request = new Request(endpoint.medicationPlan + '/patient/' + idPatient, {
         method: 'GET',
-    });
+        headers: {
+            'Authorization': 'Bearer '  + sessionStorage.getItem("token"),
+
+        }});
     console.log(request.url);
     RestApiClient.performRequest(request, callback);
 }
@@ -17,3 +20,4 @@ function getMedicationPlans(idPatient, callback){
 export{
     getMedicationPlans
 }
+

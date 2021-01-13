@@ -6,8 +6,12 @@ const endpoint = {
 };
 
 function getPatientsByCg(id, callback) {
-    let request = new Request(HOST.backend_api + endpoint.patient + '/' + id, {
+    let request = new Request(endpoint.patient + '/' + id, {
         method: 'GET',
+        headers: {
+            'Authorization': 'Bearer '  + sessionStorage.getItem("token"),
+
+        }
     });
     console.log(request.url);
     RestApiClient.performRequest(request, callback);

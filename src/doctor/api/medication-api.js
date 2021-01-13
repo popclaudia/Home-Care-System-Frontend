@@ -6,24 +6,36 @@ const endpoint = {
 };
 
 function getMedication(callback) {
-    let request = new Request(HOST.backend_api + endpoint.medication, {
+    let request = new Request(endpoint.medication, {
         method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token"),
+        }
+
     });
     console.log(request.url);
     RestApiClient.performRequest(request, callback);
 }
 
 function deleteMedication(id, callback) {
-    let request = new Request(HOST.backend_api + endpoint.medication + '/' + id, {
+    let request = new Request( endpoint.medication + '/' + id, {
         method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+        }
+
     });
     console.log(request.url);
     RestApiClient.performRequest(request, callback);
 }
 
 function getMedicationById(params, callback){
-    let request = new Request(HOST.backend_api + endpoint.medication + params.id, {
-       method: 'GET'
+    let request = new Request(endpoint.medication + params.id, {
+       method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+        }
+
     });
 
     console.log(request.url);
@@ -31,11 +43,13 @@ function getMedicationById(params, callback){
 }
 
 function putMedication(id, user, callback){
-    let request = new Request(HOST.backend_api + endpoint.medication + '/' + id, {
+    let request = new Request( endpoint.medication + '/' + id, {
         method: 'PUT',
         headers : {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+
         },
         body: JSON.stringify(user)
     });
@@ -46,11 +60,13 @@ function putMedication(id, user, callback){
 }
 
 function postMedication(user, callback){
-    let request = new Request(HOST.backend_api + endpoint.medication, {
+    let request = new Request(endpoint.medication, {
         method: 'POST',
         headers : {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+
         },
         body: JSON.stringify(user)
     });

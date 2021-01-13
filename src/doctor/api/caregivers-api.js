@@ -6,24 +6,35 @@ const endpoint = {
 };
 
 function getCaregiver(callback) {
-    let request = new Request(HOST.backend_api + endpoint.caregiver, {
+    let request = new Request(endpoint.caregiver, {
         method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+        }
+
     });
     console.log(request.url);
     RestApiClient.performRequest(request, callback);
 }
 
 function deleteCaregiver(id, callback) {
-    let request = new Request(HOST.backend_api + endpoint.caregiver + '/' + id, {
+    let request = new Request( endpoint.caregiver + '/' + id, {
         method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+        }
+
     });
     console.log(request.url);
     RestApiClient.performRequest(request, callback);
 }
 
 function getCaregiverById(params, callback){
-    let request = new Request(HOST.backend_api + endpoint.caregiver + params.id, {
-        method: 'GET'
+    let request = new Request( endpoint.caregiver + params.id, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+        }
     });
 
     console.log(request.url);
@@ -31,11 +42,12 @@ function getCaregiverById(params, callback){
 }
 
 function putCaregiver(id, user, callback){
-    let request = new Request(HOST.backend_api + endpoint.caregiver + '/' + id, {
+    let request = new Request(endpoint.caregiver + '/' + id, {
         method: 'PUT',
         headers : {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token")
         },
         body: JSON.stringify(user)
     });
@@ -46,11 +58,12 @@ function putCaregiver(id, user, callback){
 }
 
 function postCaregiver(user, callback){
-    let request = new Request(HOST.backend_api + endpoint.caregiver, {
+    let request = new Request(endpoint.caregiver, {
         method: 'POST',
         headers : {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem("token")
         },
         body: JSON.stringify(user)
     });

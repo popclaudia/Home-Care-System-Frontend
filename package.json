@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.1",
     "bootstrap": "^4.3.1",
+    "http-proxy-middleware": "^0.18.0",
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
     "randomcolor": "^0.5.4",
@@ -18,8 +19,10 @@
     "react-stomp": "^5.0.0",
     "react-table": "^6.10.0",
     "reactstrap": "^7.0.2",
-    "recharts": "latest"
+    "recharts": "latest",
+    "superagent-auth-bearer": "^0.0.1"
   },
+  "proxy": "https://spring-assignment-1.herokuapp.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -38,6 +38,7 @@ class PatientContainer extends React.Component {
     }
 
     fetchPatientData() {
+
         return API_USERS.getPatientById(sessionStorage.getItem("id"), (result, status, err) => {
             if (result !== null && status === 200) {
                 this.setState({
