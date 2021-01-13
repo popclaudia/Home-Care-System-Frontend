@@ -2,7 +2,7 @@ import {HOST} from '../../commons/hosts';
 import RestApiClient from "../../commons/api/rest-client";
 
 const endpoint = {
-    patient: '/patient/caregiver'
+    patient: 'api/patient/caregiver'
 };
 
 function getPatientsByCg(id, callback) {
