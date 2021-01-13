@@ -2,7 +2,7 @@ import {HOST} from '../../commons/hosts';
 import RestApiClient from "../../commons/api/rest-client";
 
 const endpoint = {
-    caregiver: 'api/caregiver'
+    caregiver: '/api/caregiver'
 };
 
 function getCaregiver(callback) {
